@@ -103,8 +103,8 @@ PRODUCT_PACKAGES += \
     liboverlay
 
 # FlipFlap
-#PRODUCT_PACKAGES += \
-#    FlipFlap
+PRODUCT_PACKAGES += \
+    FlipFlap
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
