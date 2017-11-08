@@ -37,14 +37,13 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
-BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=g3 user_debug=31 msm_rtb.filter=0x0 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=none androidboot.hardware=g3 user_debug=31 androidboot.selinux=permissive msm_rtb.filter=0x0
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x0008000 --ramdisk_offset 0x2000000
 TARGET_KERNEL_SOURCE := kernel/lge/g3
+KERNEL_TOOLCHAIN_PREFIX :=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 
 # Audio
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
@@ -101,6 +100,10 @@ BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
+# Bootanimation
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
 # Recovery
 BOARD_NO_SECURE_DISCARD := true
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -109,6 +112,10 @@ TARGET_USERIMAGES_USE_EXT4 := true
 
 # SDClang
 TARGET_USES_SDCLANG := true
+
+# STRICT_ALIASING := true
+CLANG_FAST := true
+ENABLE_CPUSETS := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
