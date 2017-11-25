@@ -55,11 +55,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 560dpi
 
-# Boot animation
-TARGET_BOOTANIMATION_HALF_RES := true
-TARGET_SCREEN_HEIGHT := 2560
-TARGET_SCREEN_WIDTH := 1440
-
 # Dalvik/HWUI
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
@@ -102,10 +97,6 @@ PRODUCT_PACKAGES += \
     memtrack.msm8974 \
     liboverlay
 
-# FlipFlap
-PRODUCT_PACKAGES += \
-    FlipFlap
-
 # IPv6 tethering
 PRODUCT_PACKAGES += \
     ebtables \
@@ -139,10 +130,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
-
-# QuickCircle Case App
-PRODUCT_PACKAGES += \
-    FlipFlap
 
 # NFC
 PRODUCT_PACKAGES += \
