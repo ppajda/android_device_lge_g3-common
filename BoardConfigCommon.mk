@@ -96,9 +96,6 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
-# Qualcomm support
-BOARD_USES_QCOM_HARDWARE := true
-
 # Recovery
 BOARD_NO_SECURE_DISCARD := true
 BOARD_SUPPRESS_EMMC_WIPE := true
@@ -109,7 +106,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USE_SDCLANG := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/lge/g3-common/sepolicy
 
 # Battery info

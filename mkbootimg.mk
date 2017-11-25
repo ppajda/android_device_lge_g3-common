@@ -23,12 +23,18 @@ endif
 	@echo -e ${CL_CYN}"Made boot image: $@"${CL_RST}
 
 ## Overload recoveryimg generation: Same as the original, + --dt arg
-$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) $(INSTALLED_DTIMAGE_TARGET) \
-		$(recovery_ramdisk) \
-		$(recovery_kernel)
-	$(call build-recoveryimage-target, $@)
-	$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --dt $(INSTALLED_DTIMAGE_TARGET) --output $@
+$(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTFS) $(MKBOOTIMG) $(MINIGZIP) \
+		$(INSTALLED_RAMDISK_TARGET) \
+		$(INSTALLED_BOOTIMAGE_TARGET) \
+		$(INTERNAL_RECOVERYIMAGE_FILES) \
+		$(recovery_initrc) $(recovery_sepolicy) $(recovery_kernel) \
+		$(INSTALLED_2NDBOOTLOADER_TARGET) \
+		$(recovery_build_prop) $(recovery_resource_deps) \
+		$(recovery_fstab) \
+		$(RECOVERY_INSTALL_OTA_KEYS)
+		$(call build-recoveryimage-target, $@)
+		$(hide) $(MKBOOTIMG) $(INTERNAL_RECOVERYIMAGE_ARGS) $(BOARD_MKBOOTIMG_ARGS) --dt $(INSTALLED_DTIMAGE_TARGET) --output $@
 ifeq ($(TARGET_REQUIRES_BUMP),true)
-	$(hide) $(BUMP) $@ $@
+		$(hide) $(BUMP) $@ $@
 endif
-	@echo -e ${CL_CYN}"Made recovery image: $@"${CL_RST}
+		@echo -e ${CL_CYN}"Made recovery image: $@"${CL_RST}
